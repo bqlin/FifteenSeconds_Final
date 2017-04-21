@@ -21,7 +21,7 @@
     return [dictionary writeToURL:url atomically:flag];
 }
 
-/// 生成轨道描述字典
+/// 生成轨道描述字典数组（self.tracks） @{track_%i, dict}
 - (NSDictionary *)dictionaryRepresentation {
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -36,6 +36,7 @@
     return dict;
 }
 
+/// AVCompositionTrack 描述字典，包含字段：trackID、mediaType、segments
 - (NSDictionary *)dictionaryForTrack:(AVCompositionTrack *)track {
 
     NSMutableArray *segments = [NSMutableArray array];
@@ -51,6 +52,7 @@
     return dict;
 }
 
+/// AVCompositionTrack 描述字典，包含字段：sourceTrackID、sourceURL、sourceTimeRange、targetTimeRange、empty
 - (NSDictionary *)dictionaryForSegment:(AVCompositionTrackSegment *)segment {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
@@ -68,10 +70,12 @@
     return dict;
 }
 
+/// URL 字符串
 - (NSString *)stringForSourceURL:(NSURL *)sourceURL {
     return sourceURL ? [sourceURL absoluteString] : @"";
 }
 
+/// timeRange 描述字典，直接由 CMTimeRangeCopyAsDictionary 函数生成；
 - (NSDictionary *)dictionaryForTimeRange:(CMTimeRange)timeRange {
     return CFBridgingRelease(CMTimeRangeCopyAsDictionary(timeRange, NULL));
 }
