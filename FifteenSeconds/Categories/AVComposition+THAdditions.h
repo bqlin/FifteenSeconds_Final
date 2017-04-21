@@ -10,6 +10,7 @@
 
 @interface AVComposition (THAdditions)
 
+/// 写入文件
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)flag;
 - (BOOL)writeToURL:(NSURL *)url atomically:(BOOL)flag;
 

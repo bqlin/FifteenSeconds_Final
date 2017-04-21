@@ -21,6 +21,7 @@
     return [dictionary writeToURL:url atomically:flag];
 }
 
+/// 生成轨道描述字典
 - (NSDictionary *)dictionaryRepresentation {
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
