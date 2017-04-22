@@ -36,6 +36,7 @@
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
     if (self) {
+        // 默认都为了把 bar 放在底部
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 		_backgroundImageView = [[UIImageView alloc] initWithFrame:frame];
 		[self addSubview:_backgroundImageView];
@@ -43,6 +44,7 @@
     return self;
 }
 
+#pragma mark - 存取器
 - (void)setBackgroundImage:(UIImage *)image {
 	self.backgroundImageView.image = image;
 }

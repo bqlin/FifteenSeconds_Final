@@ -25,6 +25,7 @@
 
 @interface NSString (THAdditions)
 
+/// 正则表达式
 - (NSString *)stringByMatchingRegex:(NSString *)regex capture:(NSUInteger)capture;
 
 @end

@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// UIViewController 子类
 
 typedef enum {
     THTabBarAnchorTop = 0,
@@ -43,7 +44,9 @@ typedef enum {
 
 @protocol THTabBarControllerDelegate <NSObject>
 @optional
+/// 激活指定视图控制器代理
 - (BOOL)tabBarController:(THTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController;
+/// 用户选中了 tab bar 中的项
 - (void)tabBarController:(THTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
 @end
 

@@ -25,6 +25,7 @@
 
 @interface UIAlertView (THAdditions)
 
+/// 弹窗
 + (void)showAlertWithTitle:(NSString *)title message:(NSString *)message;
 
 @end

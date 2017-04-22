@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 自定义跳转
 
 #import "THTabBarRelationshipSegue.h"
 #import "THTabBarController.h"
@@ -33,13 +34,17 @@
 @implementation THTabBarRelationshipSegue
 
 - (void)perform {
+    // 源控制器
 	THTabBarController *tabBarController = (THTabBarController *)self.sourceViewController;
+    // 源控制器 tab bar items
 	NSMutableArray *tabBarItems = [NSMutableArray arrayWithArray:tabBarController.tabBarItems];
 	
 	NSString *className = NSStringFromClass([self.destinationViewController class]);
 	NSString *imageName = [className stringByMatchingRegex:VIEW_REGEX capture:1];
+    // 目标控制器
 	UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:self.destinationViewController];
 	controller.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    // 添加 item
 	[tabBarItems addObject:[THTabBarItem itemWithImageName:imageName controller:controller]];
 	tabBarController.tabBarItems = tabBarItems;
 }

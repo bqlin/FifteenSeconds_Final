@@ -50,7 +50,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-
+    // 绘制渐变层
 //	if (self.selected) {
 //
 //        CGContextRef context = UIGraphicsGetCurrentContext();

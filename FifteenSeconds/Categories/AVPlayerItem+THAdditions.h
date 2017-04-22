@@ -27,9 +27,12 @@
 
 @interface AVPlayerItem (THAdditions)
 
+/// syncLayer 属性（仅仅为属性）
 @property (strong, nonatomic) AVSynchronizedLayer *syncLayer;
 
+/// 资源时长是否可用
 - (BOOL)hasValidDuration;
+/// 静音
 - (void)muteAudioTracks:(BOOL)value;
 
 @end

@@ -38,7 +38,7 @@ typedef enum {
 
 @interface THTabBarView : UIView
 
-@property(weak, nonatomic) id delegate;
+@property(weak, nonatomic) id<THTabBarDelegate> delegate;
 @property(nonatomic, copy) NSArray *tabBarButtons;
 @property(weak, nonatomic) THTabBarButton *selectedTabBarButton;
 @property(nonatomic, readonly) NSUInteger selectedTabBarButtonIndex;

@@ -25,7 +25,9 @@
 
 @interface UIColor (THAdditions)
 
+/// 亮度更高颜色
 - (UIColor *)lighterColor;
+/// 亮度更低颜色
 - (UIColor *)darkerColor;
 
 @end

@@ -30,12 +30,14 @@
 
 #define STATUS_BAR_HEIGHT 20.0f
 
-@interface THTabBarController ()
+@interface THTabBarController ()<THTabBarDelegate>
+/// 上一次选中的索引号
 @property(nonatomic) NSInteger lastSelectedIndex;
 @end
 
 @implementation THTabBarController
 
+/// 初始化变量
 - (void)setup {
     _lastSelectedIndex = 0;
 }
@@ -54,6 +56,7 @@
     return self;
 }
 
+
 - (void)awakeFromNib {
 	[self performSegueWithIdentifier:@"THSetVideoPickerViewController" sender:self];
 	[self performSegueWithIdentifier:@"THSetAudioPickerViewController" sender:self];
@@ -66,6 +69,7 @@
 }
 
 - (void)loadView {
+    // 让默认的 view 的 frame 为 0
     self.view = [[THTabBarControllerView alloc] initWithFrame:CGRectZero];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
@@ -88,6 +92,8 @@
 - (void)didMoveToParentViewController:(UIViewController *)parent {
     [self setSelectedIndex:self.lastSelectedIndex];
 }
+
+#pragma mark - 存取器
 
 - (void)setTabBarItems:(NSArray *)tabBarItems {
     if (_tabBarItems != tabBarItems) {
@@ -155,7 +161,9 @@
     return 0;
 }
 
+#pragma mark - THTabBarDelegate
 - (BOOL)tabBar:(THTabBarView *)tabBar canSelectTabAtIndex:(NSUInteger)index {
+    // 调用激活指定视图控制器代理
     if (self.delegate && [self.delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) {
         return [self.delegate tabBarController:self shouldSelectViewController:[[self.tabBarItems objectAtIndex:index] controller]];
     }
@@ -176,6 +184,7 @@
     }
 }
 
+// 界面旋转顺应器选中的视图控制器的旋转
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if (self.selectedViewController) {
         return [self.selectedViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
