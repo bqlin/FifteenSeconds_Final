@@ -28,6 +28,7 @@
 #ifndef FifteenSeconds_Starter_THFunctions_h
 #define FifteenSeconds_Starter_THFunctions_h
 
+/// 参数是否为空
 static inline BOOL THIsEmpty(id value) {
 	return value == nil ||
 	value == [NSNull null] ||
@@ -35,10 +36,12 @@ static inline BOOL THIsEmpty(id value) {
 	([value respondsToSelector:@selector(count)] && [value count] == 0);
 }
 
+/// 时间段→宽度
 static inline CGFloat THGetWidthForTimeRange(CMTimeRange timeRange, CGFloat scaleFactor) {
 	return CMTimeGetSeconds(timeRange.duration) * scaleFactor;
 }
 
+/// 时间→起始坐标
 static inline CGPoint THGetOriginForTime(CMTime time) {
     if (CMTIME_IS_VALID(time)) {
         CGFloat seconds = CMTimeGetSeconds(time);
@@ -47,16 +50,19 @@ static inline CGPoint THGetOriginForTime(CMTime time) {
     return CGPointZero;
 }
 
+/// 宽度→时间
 static inline CMTimeRange THGetTimeRangeForWidth(CGFloat width, CGFloat scaleFactor) {
 	CGFloat duration = width / scaleFactor;
 	return CMTimeRangeMake(kCMTimeZero, CMTimeMakeWithSeconds(duration, NSEC_PER_SEC));
 }
 
+/// 时间起始坐标→时间
 static inline CMTime THGetTimeForOrigin(CGFloat origin, CGFloat scaleFactor) {
 	CGFloat seconds = origin / scaleFactor;
 	return CMTimeMakeWithSeconds(seconds, NSEC_PER_SEC);
 }
 
+/// 角度→弧度
 static inline CGFloat THDegreesToRadians(CGFloat degrees) {
     return (degrees * M_PI / 180);
 }

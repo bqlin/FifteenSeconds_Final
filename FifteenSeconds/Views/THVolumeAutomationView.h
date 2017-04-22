@@ -27,7 +27,9 @@
 
 @interface THVolumeAutomationView : UIView
 
+/// 音量坡度
 @property (strong, nonatomic) NSArray *audioRamps;
+/// 轨道片段总时长
 @property (nonatomic) CMTime duration;
 
 @end

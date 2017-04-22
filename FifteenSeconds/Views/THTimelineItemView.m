@@ -30,6 +30,7 @@
 @implementation THTimelineItemView
 
 + (Class)layerClass {
+    // 渐变层类型
 	return [CAGradientLayer class];
 }
 
@@ -41,8 +42,8 @@
 
 - (void)setBackgroundColor:(UIColor *)color {
 	[super setBackgroundColor:color];
-//	CAGradientLayer *gradientLayer = (CAGradientLayer *)self.layer;
-//	gradientLayer.colors = @[(id)[color lighterColor].CGColor, (id)[color darkerColor].CGColor];
+	CAGradientLayer *gradientLayer = (CAGradientLayer *)self.layer;
+	gradientLayer.colors = @[(id)[color lighterColor].CGColor, (id)[color darkerColor].CGColor];
 }
 
 @end

@@ -22,12 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 音频轨道片段
 
 #import "THTimelineItemView.h"
 #import "THVolumeAutomationView.h"
 
 @interface THAudioItemCollectionViewCell : UICollectionViewCell
 
+/// 轨道片段视图
 @property (strong, nonatomic) IBOutlet THTimelineItemView *itemView;
 @property (strong, nonatomic) IBOutlet THVolumeAutomationView *volumeAutomationView;
 

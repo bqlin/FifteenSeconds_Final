@@ -37,15 +37,21 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-		self.backgroundColor = [UIColor clearColor];
+        [self setup];
     }
     return self;
 }
 
 - (void)awakeFromNib {
-	self.backgroundColor = [UIColor clearColor];
+    [super awakeFromNib];
+    [self setup];
 }
 
+- (void)setup{
+    self.backgroundColor = [UIColor clearColor];
+}
+
+#pragma mark - 存取器
 - (void)setAudioRamps:(NSArray *)audioRamps {
 	_audioRamps = audioRamps;
 
@@ -64,17 +70,21 @@
 	[self setNeedsDisplay];
 }
 
+/// 时间→宽度
 CGFloat _THGetWidthForTimeRange(CMTimeRange timeRange, CGFloat scaleFactor) {
 	return CMTimeGetSeconds(timeRange.duration) * scaleFactor;
 }
 
 - (CGFloat)xForTime:(CMTime)time {
+    //NSLog(@"time = %f", CMTimeGetSeconds(time));
 	CMTime xTime = CMTimeSubtract(self.duration, CMTimeSubtract(self.duration, time));
+    //NSLog(@"xTime = %f", CMTimeGetSeconds(xTime));
 	return CMTimeGetSeconds(xTime) * self.scaleFactor;
 }
 
 - (void)setDuration:(CMTime)duration {
 	_duration = duration;
+    // 计算时长与轨道片段宽度的比率
 	self.scaleFactor = self.bounds.size.width / CMTimeGetSeconds(duration);
 }
 

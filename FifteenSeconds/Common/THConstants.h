@@ -23,7 +23,9 @@
 //  THE SOFTWARE.
 //
 
+/// 时间轨道总时长
 static const CGFloat THTimelineSeconds = 15.0f;
+/// 时间轨道宽度
 static const CGFloat THTimelineWidth = 1014.0f;
 
 static const CGSize TH720pVideoSize = {1280.0f, 720.0f};
