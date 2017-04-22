@@ -22,12 +22,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 播放同步光标
 
 #import <AVFoundation/AVFoundation.h>
 
 @interface THPlayheadView : UIView
 
+/// 清理图层，并创建同步进度光标
 - (void)synchronizeWithPlayerItem:(AVPlayerItem *)playerItem;
+/// 清除图层
 - (void)reset;
 
 @end

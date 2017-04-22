@@ -26,6 +26,7 @@
 
 @interface THTimelineItemView : UIView
 
+/// 轨道显示的标签
 @property (strong, nonatomic) IBOutlet UILabel *label;
 
 @end

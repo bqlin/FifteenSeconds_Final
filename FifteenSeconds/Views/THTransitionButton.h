@@ -27,6 +27,7 @@
 
 @interface THTransitionButton : UIButton
 
+/// 设置过渡类型，并同步设置按钮的对应的背景图
 @property (nonatomic) THVideoTransitionType transitionType;
 
 @end

@@ -65,11 +65,13 @@
 }
 
 - (void)reset {
-    self.layer.sublayers = nil;
+    //self.layer.sublayers = nil;
+    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
 }
 
 - (void)synchronizeWithPlayerItem:(AVPlayerItem *)playerItem {
-
+//    NSLog(@"sub layers = %@", self.layer.sublayers);
+    
     // Remove existing sublayers
     [self reset];
 

@@ -50,6 +50,7 @@
 	NSString *className = NSStringFromClass([self class]);
 	NSString *colorName = [[className stringByMatchingRegex:VIEW_REGEX capture:1] lowercaseString];
 	NSString *imageName = [NSString stringWithFormat:@"app_%@_background", colorName];
+    //NSLog(@"image name = %@", imageName);
 	UIImage *patternImage = [UIImage imageNamed:imageName];
 
 	// Fix for my broken tiled images.  Fix this correctly in Photoshop.

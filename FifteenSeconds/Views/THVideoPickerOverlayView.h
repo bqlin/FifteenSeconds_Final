@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 视频弹出的控制视图
 
 @interface THVideoPickerOverlayView : UIView
 

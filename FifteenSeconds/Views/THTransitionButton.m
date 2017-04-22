@@ -48,6 +48,7 @@
 }
 
 - (void)setUp {
+    // 默认为溶化效果
 	_transitionType = THVideoTransitionTypeDissolve;
 	self.typeToNameMapping = (@{
 							  @(THVideoTransitionTypeDissolve) : @"trans_btn_bg_xfade",

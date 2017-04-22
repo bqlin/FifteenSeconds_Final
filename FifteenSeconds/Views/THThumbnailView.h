@@ -22,9 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 视频缩略图视图
 
 @interface THThumbnailView : UIView
 
+/// 设置缩略图数组，元素是 UIImage
 - (void)setThumbnails:(NSArray *)thumbnails;
 
 @end
