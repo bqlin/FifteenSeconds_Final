@@ -35,7 +35,9 @@
 static NSString * const THAudioItemCellID = @"THAudioItemCell";
 
 @interface THAudioPickerViewController ()
+/// 背景音乐项，THAudioItem 类型
 @property (strong, nonatomic) NSArray *musicItems;
+/// 旁白项，THAudioItem 类型
 @property (strong, nonatomic) NSArray *voiceOverItems;
 @property (strong, nonatomic) NSArray *allAudioItems;
 @property (nonatomic) BOOL previewCompleted;
@@ -56,6 +58,7 @@ static NSString * const THAudioItemCellID = @"THAudioItemCell";
 											   object:nil];
 	self.previewCompleted = NO;
 
+    // 配置表视图样式
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
@@ -71,7 +74,7 @@ static NSString * const THAudioItemCellID = @"THAudioItemCell";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return section == 0 ? @"Music" : @"Voice Overs";
+	return section == 0 ? @"背景音乐" : @"旁白";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -121,8 +124,11 @@ static NSString * const THAudioItemCellID = @"THAudioItemCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	THAudioItem *item = self.allAudioItems[indexPath.section][indexPath.row];
 	THTrack track = indexPath.section == 0 ? THMusicTrack : THCommentaryTrack;
+    /// 点击单元格添加媒体到轨道
 	[self.playbackMediator addMediaItem:item toTimelineTrack:track];
 }
+
+#pragma mark - 存取器
 
 - (THAudioItem *)defaultVoiceOver {
     return [self.voiceOverItems firstObject];

@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-@interface THAppSettings : NSObject0
+@interface THAppSettings : NSObject
 
 + (THAppSettings *)sharedSettings;
 /// 全局过渡开关

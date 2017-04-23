@@ -10,3 +10,15 @@ UIAlertView
 UIColor
 UIView
 
+
+## THAudioPickerViewController
+点击THAudioItemTableViewCell 的 previewButton 会发生什么？
+	中间层对象调用预览方法；
+
+哪些地方发出过 THPlaybackEndedNotification 通知，该通知发出时做了什么操作？
+
+使用到的模型：
+- THAudioItem
+	+ THMediaItem 的子类
+- THMediaItem
+	+ 描述媒体的对象

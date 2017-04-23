@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 视频选择控制器
 
 #import <UIKit/UIKit.h>
 #import "THMediaItem.h"

@@ -26,6 +26,7 @@
 #import "THMediaItem.h"
 #import "THTimeline.h"
 
+/// 播放中间层协议
 @protocol THPlaybackMediator <NSObject>
 
 - (void)loadMediaItem:(THMediaItem *)mediaItem;

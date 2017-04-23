@@ -310,6 +310,8 @@
 				C414914718FB4D010055EAD1 /* Layouts */,
 				C414914C18FB4D010055EAD1 /* THAudioPickerViewController.h */,
 				C414914D18FB4D010055EAD1 /* THAudioPickerViewController.m */,
+				C414915B18FB4D010055EAD1 /* THVideoPickerViewController.h */,
+				C414915C18FB4D010055EAD1 /* THVideoPickerViewController.m */,
 				C4A29A481904BA9200C137B1 /* THCompositionExporter.h */,
 				C4A29A491904BA9200C137B1 /* THCompositionExporter.m */,
 				C414914E18FB4D010055EAD1 /* THMainViewController.h */,
@@ -325,8 +327,6 @@
 				C414915818FB4D010055EAD1 /* THTimelineViewController.m */,
 				C414915918FB4D010055EAD1 /* THTransitionViewController.h */,
 				C414915A18FB4D010055EAD1 /* THTransitionViewController.m */,
-				C414915B18FB4D010055EAD1 /* THVideoPickerViewController.h */,
-				C414915C18FB4D010055EAD1 /* THVideoPickerViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

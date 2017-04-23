@@ -51,6 +51,7 @@ static NSString *const AVAssetCommonMetadataKey = @"commonMetadata";
 }
 
 - (NSString *)title {
+    // 优先使用 AVAsset.commomMetadata 中 AVMetadataItem 元素的 AVMetadataCommonKeyTitle 键
     if (!_title) {
         for (AVMetadataItem *metaItem in [self.asset commonMetadata]) {
             if ([metaItem.commonKey isEqualToString:AVMetadataCommonKeyTitle]) {

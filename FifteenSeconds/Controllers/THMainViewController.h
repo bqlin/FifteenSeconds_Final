@@ -32,9 +32,13 @@
 
 @interface THMainViewController : UIViewController <THPlaybackMediator>
 
+/// 轨道视图控制器
 @property (weak, nonatomic) THTimelineViewController *timelineViewController;
+/// 预览播放器视图控制器
 @property (weak, nonatomic) THPlayerViewController *playerViewController;
+/// 视频选择视图控制器
 @property (weak, nonatomic) THVideoPickerViewController *videoPickerViewController;
+/// 音频选择视图控制器
 @property (weak, nonatomic) THAudioPickerViewController *audioPickerViewController;
 
 @end

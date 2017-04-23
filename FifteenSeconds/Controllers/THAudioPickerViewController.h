@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 音频选择控制器
 
 #import "THPlaybackMediator.h"
 
@@ -29,9 +30,12 @@
 
 @interface THAudioPickerViewController : UITableViewController
 
+// 需外部传递
 @property (weak, nonatomic) id <THPlaybackMediator> playbackMediator;
 
+/// 默认旁白
 @property (nonatomic, readonly) THAudioItem *defaultVoiceOver;
+/// 默认背景音乐
 @property (nonatomic, readonly) THAudioItem *defaultMusicTrack;
 
 @end

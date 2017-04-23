@@ -22,12 +22,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 音频单元格
 
 #import "THLightTableViewCell.h"
 
 @interface THAudioItemTableViewCell : THLightTableViewCell
 
+/// 标题
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+/// 预览按钮
 @property (weak, nonatomic) IBOutlet UIButton *previewButton;
 
 @end

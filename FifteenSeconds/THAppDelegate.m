@@ -33,6 +33,7 @@
 #import "THTabBarView.h"
 
 @interface THAppDelegate ()
+/// 主视图控制器
 @property (weak, nonatomic) THMainViewController *mainViewController;
 @end
 
@@ -41,14 +42,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
 
+    /// 把窗口的根视图控制器赋值给主控制器属性
 	self.mainViewController = (THMainViewController *)self.window.rootViewController;
 
+    // 全局修改样式
     //	// Change the tabbar's background and selection image through the appearance proxy
     UIImage *bgImage = [[UIImage imageNamed:@"tb_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 3, 0, 3)];
     [[THTabBarView appearance] setBackgroundImage:bgImage];
 
-	UIEdgeInsets insets;
-	insets = UIEdgeInsetsZero;
+	//UIEdgeInsets insets = UIEdgeInsetsZero;
 	UIImage *navbarImage = [[UIImage imageNamed:@"app_navbar_background"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 3, 0, 3)];
 	[[UINavigationBar appearance] setBackgroundImage:navbarImage forBarMetrics:UIBarMetricsDefault];
 
@@ -66,6 +68,7 @@
 	self.mainViewController.videoPickerViewController = [self childViewControllerOfType:[THVideoPickerViewController class]];
 	self.mainViewController.audioPickerViewController = [self childViewControllerOfType:[THAudioPickerViewController class]];
 
+    /// 指定播放中间层为主视图控制器
 	self.mainViewController.videoPickerViewController.playbackMediator = self.mainViewController;
 	self.mainViewController.audioPickerViewController.playbackMediator = self.mainViewController;
 	self.mainViewController.playerViewController.playbackMediator = self.mainViewController;

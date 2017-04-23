@@ -27,7 +27,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+/// [UIApplication sharedApplication].delegate;
 + (THAppDelegate *)sharedDelegate;
+/// 为主控制器的各个视图控制器属性赋值
 - (void)prepareMainViewController;
 
 @end

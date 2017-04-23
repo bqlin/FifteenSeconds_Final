@@ -79,14 +79,18 @@
 	return YES;
 }
 
+#pragma mark - playbackMediator 协议实现
+/// 载入媒体项
 - (void)loadMediaItem:(THMediaItem *)mediaItem {
 	[self.playerViewController loadInitialPlayerItem:[mediaItem makePlayable]];
 }
 
+/// 预览媒体项
 - (void)previewMediaItem:(THMediaItem *)mediaItem {
 	[self.playerViewController playPlayerItem:[mediaItem makePlayable]];
 }
 
+/// 预览轨道
 - (void)prepareTimelineForPlayback {
 	THTimeline *timeline = self.timelineViewController.currentTimeline;
 	id<THCompositionBuilder> builder = [self.factory builderForTimeline:timeline];
@@ -96,13 +100,17 @@
 	[self.playerViewController playPlayerItem:playerItem];
 }
 
+/// 添加媒体到轨道
 - (void)addMediaItem:(THMediaItem *)item toTimelineTrack:(THTrack)track {
 	[self.timelineViewController addTimelineItem:item toTrack:track];
 }
 
+/// 停止播放
 - (void)stopPlayback {
 	[self.playerViewController stopPlayback];
 }
+
+#pragma mark -
 
 - (void)loadDefaultComposition:(NSNotification *)notification {
     [self.timelineViewController clearTimeline];
