@@ -23,13 +23,16 @@
 //  THE SOFTWARE.
 //
 
-@interface THAppSettings : NSObject
+@interface THAppSettings : NSObject0
 
 + (THAppSettings *)sharedSettings;
-
+/// 全局过渡开关
 @property (nonatomic) BOOL transitionsEnabled;
+/// 音量淡入淡出
 @property (nonatomic) BOOL volumeFadesEnabled;
+
 @property (nonatomic) BOOL volumeDuckingEnabled;
+/// 开启标题
 @property (nonatomic) BOOL titlesEnabled;
 
 @end
