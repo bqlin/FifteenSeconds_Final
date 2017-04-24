@@ -32,6 +32,7 @@
 
 @property (weak, nonatomic) id <THPlaybackMediator> playbackMediator;
 
+/// 默认的一组视频，默认选取前3个
 @property (nonatomic, readonly) NSArray *defaultVideoItems;
 
 @end

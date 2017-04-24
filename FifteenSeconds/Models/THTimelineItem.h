@@ -27,7 +27,9 @@
 
 @interface THTimelineItem : NSObject
 
+/// 时间范围
 @property (nonatomic) CMTimeRange timeRange;
+/// 在轨道上的起始点
 @property (nonatomic) CMTime startTimeInTimeline;
 
 @end

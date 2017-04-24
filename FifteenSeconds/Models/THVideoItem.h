@@ -28,15 +28,21 @@
 
 @interface THVideoItem : THMediaItem
 
+/// 缩略图数组
 @property (strong, nonatomic) NSArray *thumbnails;
 
 + (id)videoItemWithURL:(NSURL *)url;
 
+/// 片段头过渡
 @property (strong, nonatomic) THVideoTransition *startTransition;
+/// 片段尾过渡
 @property (strong, nonatomic) THVideoTransition *endTransition;
 
+/// 视频播放时间区间，只有getter方法
 @property (nonatomic, readonly) CMTimeRange playthroughTimeRange;
+/// 开始过渡时间区间，只有getter方法
 @property (nonatomic, readonly) CMTimeRange startTransitionTimeRange;
+/// 结束过渡时区间，只有getter方法
 @property (nonatomic, readonly) CMTimeRange endTransitionTimeRange;
 
 @end

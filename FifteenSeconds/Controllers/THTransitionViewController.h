@@ -27,6 +27,7 @@
 
 @protocol THTransitionViewControllerDelegate <NSObject>
 
+/// 用户点击选中了过渡效果
 - (void)transitionSelected;
 
 @end

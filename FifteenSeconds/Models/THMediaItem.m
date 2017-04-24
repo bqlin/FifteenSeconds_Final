@@ -71,6 +71,7 @@ static NSString *const AVAssetCommonMetadataKey = @"commonMetadata";
     return nil;
 }
 
+/// 从 AVAsset 载入键，完成后回调
 - (void)prepareWithCompletionBlock:(THPreparationCompletionBlock)completionBlock {
     [self.asset loadValuesAsynchronouslyForKeys:@[AVAssetTracksKey, AVAssetDurationKey, AVAssetCommonMetadataKey] completionHandler:^{
         // Production code should be more robust.  Specifically, should capture error in failure case.

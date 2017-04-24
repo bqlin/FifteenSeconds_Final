@@ -87,6 +87,36 @@
     [self.playheadView synchronizeWithPlayerItem:playerItem];
 }
 
+#pragma mark - 存取器
+/// 启用过渡
+- (void)setTransitionsEnabled:(BOOL)enabled {
+    _transitionsEnabled = enabled;
+    NSMutableArray *items = [NSMutableArray array];
+    for (id item in self.dataSource.timelineItems[THVideoTrack]) { // 遍历 data source 中 timelineItems 数组中的 视频轨道数组
+        if ([item isKindOfClass:[THTimelineItemViewModel class]]) {
+            THTimelineItemViewModel *model = (THTimelineItemViewModel *)item;
+            if ([model.timelineItem isKindOfClass:[THMediaItem class]]) {
+                // 添加对象
+                [items addObject:model];
+                if (enabled && (items.count % 2 != 0)) { // 在偶数个时，添加THVideoTransition对象
+                    [items addObject:[THVideoTransition disolveTransitionWithDuration:CMTimeMake(1, 2)]];
+                }
+            }
+        }
+    }
+    // 移除最后一个对象
+    if ([[items lastObject] isKindOfClass:[THVideoTransition class]]) {
+        [items removeLastObject];
+    }
+    self.dataSource.timelineItems[THVideoTrack] = items;
+}
+
+/// 启用音频闪避
+- (void)setDuckingEnabled:(BOOL)duckingEnabled{
+    _duckingEnabled = duckingEnabled;
+    //[self rebuildVolumeAndDuckingState];
+}
+
 #pragma mark - Register Notification Handlers
 
 - (void)registerForNotifications {
@@ -115,27 +145,7 @@
 }
 
 #pragma mark - Notification Handlers
-
-- (void)setTransitionsEnabled:(BOOL)enabled {
-	_transitionsEnabled = enabled;
-	NSMutableArray *items = [NSMutableArray array];
-	for (id item in self.dataSource.timelineItems[THVideoTrack]) {
-		if ([item isKindOfClass:[THTimelineItemViewModel class]]) {
-			THTimelineItemViewModel *model = (THTimelineItemViewModel *)item;
-			if ([model.timelineItem isKindOfClass:[THMediaItem class]]) {
-				[items addObject:model];
-				if (enabled && (items.count % 2 != 0)) {
-					[items addObject:[THVideoTransition disolveTransitionWithDuration:CMTimeMake(1, 2)]];
-				}
-			}
-		}
-	}
-	if ([[items lastObject] isKindOfClass:[THVideoTransition class]]) {
-		[items removeLastObject];
-	}
-	self.dataSource.timelineItems[THVideoTrack] = items;
-}
-
+/// THTransitionsEnabledStateChangeNotification，过渡开关变化时
 - (void)toggleTransitionsEnabledState:(NSNotification *)notification {
 	BOOL state = [[notification object] boolValue];
 	if (self.transitionsEnabled != state) {
@@ -146,16 +156,19 @@
 	}
 }
 
+/// THVolumeFadesEnabledStateChangeNotification，音量闪避开关变化时
 - (void)toggleVolumeFadesEnabledState:(NSNotification *)notification {
 	self.volumeFadesEnabled = [[notification object] boolValue];
     [self rebuildVolumeAndDuckingState];
 }
 
+/// THVolumeDuckingEnabledStateChangeNotification
 - (void)toggleVolumeDuckingEnabledState:(NSNotification *)notification {
 	self.duckingEnabled = [[notification object] boolValue];
     [self rebuildVolumeAndDuckingState];
 }
 
+/// 重建音频闪避
 - (void)rebuildVolumeAndDuckingState {
     [self updateMusicTrackVolumeAutomation];
 	[self.collectionView reloadData];

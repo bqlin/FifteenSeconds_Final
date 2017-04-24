@@ -35,8 +35,9 @@
 - (id)initWithTimelineItem:(THTimelineItem *)timelineItem {
 	self = [super init];
 	if (self) {
+        // 赋值属性，计算其占用轨道的最大宽度
 		_timelineItem = timelineItem;
-		CMTimeRange maxTimeRange = CMTimeRangeMake(kCMTimeZero, timelineItem.timeRange.duration);
+		CMTimeRange maxTimeRange = CMTimeRangeMake(kCMTimeZero, timelineItem.timeRange.duration); // 最大时间范围从0开始
 		_maxWidthInTimeline = THGetWidthForTimeRange(maxTimeRange, THTimelineWidth / THTimelineSeconds);
 	}
 	return self;

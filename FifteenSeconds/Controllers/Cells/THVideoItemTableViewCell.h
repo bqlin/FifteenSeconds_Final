@@ -27,9 +27,12 @@
 
 @interface THVideoItemTableViewCell : UITableViewCell
 
+/// 播放按钮，只有getter方法
 @property (nonatomic, readonly) UIButton *playButton;
+/// 添加到轨道按钮，只有getter方法
 @property (nonatomic, readonly) UIButton *addButton;
 
+/// 设置背景缩略图
 - (void)setThumbnails:(NSArray *)thumbnails;
 
 @end

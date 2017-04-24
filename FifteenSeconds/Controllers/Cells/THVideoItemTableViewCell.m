@@ -27,6 +27,7 @@
 #import "THThumbnailView.h"
 
 @interface THVideoItemTableViewCell ()
+/// 弹出视图
 @property (strong, nonatomic) THVideoPickerOverlayView *overlayView;
 @end
 
@@ -57,6 +58,7 @@
 	return self.overlayView.addButton;
 }
 
+/// 通过重写父类选中方法，实现点击弹出按钮
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 	[super setSelected:selected animated:animated];
 	self.overlayView.hidden = !selected;

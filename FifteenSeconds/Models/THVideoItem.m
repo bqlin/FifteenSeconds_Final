@@ -25,10 +25,13 @@
 
 #import "THVideoItem.h"
 
+/// 缩略图张数
 #define THUMBNAIL_COUNT 4
+/// 每张缩略图的尺寸
 #define THUMBNAIL_SIZE CGSizeMake(227.0f, 128.0f)
 
 @interface THVideoItem ()
+/// 缩略图生成器
 @property (strong, nonatomic) AVAssetImageGenerator *imageGenerator;
 @property (strong, nonatomic) NSMutableArray *images;
 @end
@@ -53,6 +56,7 @@
 // Always pass back valid time range.  If no start or end transition playthroughTimeRange equals the media item timeRange.
 - (CMTimeRange)playthroughTimeRange {
     CMTimeRange range = self.timeRange;
+    // 若存在过渡，则减掉过渡时长
     if (self.startTransition && self.startTransition.type != THVideoTransitionTypeNone) {
         range.start = CMTimeAdd(range.start, self.startTransition.duration);
         range.duration = CMTimeSubtract(range.duration, self.startTransitionTimeRange.duration);
@@ -78,6 +82,7 @@
     return CMTimeRangeMake(self.timeRange.duration, kCMTimeZero);
 }
 
+/// 实现父类的媒体类型
 - (NSString *)mediaType {
     // This is actually muxed, but treat as video for our purposes
     return AVMediaTypeVideo;
@@ -89,16 +94,20 @@
     });
 }
 
+/// 生成缩略图
 - (void)generateThumbnailsWithCompletionBlock:(THPreparationCompletionBlock)completionBlock {
 
+    // 时长
     CMTime duration = self.asset.duration;
+    // 缩略图间隔
     CMTimeValue intervalSeconds = duration.value / THUMBNAIL_COUNT;
+    //NSLog(@"interval = %zd", intervalSeconds);
 
     CMTime time = kCMTimeZero;
     NSMutableArray *times = [NSMutableArray array];
     for (NSUInteger i = 0; i < THUMBNAIL_COUNT; i++) {
-        [times addObject:[NSValue valueWithCMTime:time]];
         time = CMTimeAdd(time, CMTimeMake(intervalSeconds, duration.timescale));
+        [times addObject:[NSValue valueWithCMTime:time]];
     }
 
     [self.imageGenerator generateCGImagesAsynchronouslyForTimes:times completionHandler:^(CMTime requestedTime,

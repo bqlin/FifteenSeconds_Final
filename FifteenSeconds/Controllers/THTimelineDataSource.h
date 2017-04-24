@@ -25,7 +25,7 @@
 
 #import "THTimelineViewController.h"
 
-@interface THTimelineDataSource : NSObject <UICollectionViewDataSource, UICollectionViewDelegateTimelineLayout>
+@interface THTimelineDataSource : NSObject <UICollectionViewDataSource, UICollectionViewDelegateTimelineLayout> // 在本类中实现集合视图数据源方法、
 
 + (id)dataSourceWithController:(THTimelineViewController *)controller;
 

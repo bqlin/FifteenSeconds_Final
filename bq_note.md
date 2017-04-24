@@ -21,4 +21,21 @@ UIView
 - THAudioItem
 	+ THMediaItem 的子类
 - THMediaItem
+	+ THTimelineItem 的子类
 	+ 描述媒体的对象
+
+
+## THTimelineViewController
+
+通知
+- THTransitionsEnabledStateChangeNotification
+- THTransitionsEnabledStateChangeNotification
+- THVolumeDuckingEnabledStateChangeNotification
+- THShowTitlesEnabledStateChangeNotification
+
+dataSource.timelineItems 在哪里赋值？
+ 该数组的结构
+  一层元素：THTimelineItemViewModel
+  	二级元素：THTimelineItemViewModel的timelineItem属性，THTimelineItem
+
+如何预览

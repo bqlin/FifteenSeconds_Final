@@ -27,9 +27,12 @@
 
 @interface THTimelineItemViewModel : NSObject
 
+
 @property (nonatomic) CGFloat widthInTimeline;
 @property (nonatomic) CGFloat maxWidthInTimeline;
 @property (nonatomic) CGPoint positionInTimeline;
+
+// 只提供get
 @property (strong, nonatomic) THTimelineItem *timelineItem;
 
 + (id)modelWithTimelineItem:(THTimelineItem *)timelineItem;

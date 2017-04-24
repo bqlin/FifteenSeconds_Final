@@ -82,8 +82,9 @@
 		C4ADC5F919318BB600C0F86E /* 02_blackhole.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F419318BB600C0F86E /* 02_blackhole.mp4 */; };
 		C4ADC5FA19318BB600C0F86E /* 03_nebula.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F519318BB600C0F86E /* 03_nebula.mp4 */; };
 		C4ADC5FB19318BB600C0F86E /* 04_quasar.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F619318BB600C0F86E /* 04_quasar.mp4 */; };
-		C4ADC5FC19318BB600C0F86E /* 05_blackhole.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F719318BB600C0F86E /* 05_blackhole.mp4 */; };
 		C4E702CC1966839500DD0DE0 /* THTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E702CB1966839500DD0DE0 /* THTitleItem.m */; };
+		E5C7812D1EADD0FA00B58134 /* 06_intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E5C7812B1EADCEC400B58134 /* 06_intro.mp4 */; };
+		E5C7812E1EADD0FA00B58134 /* 05_blackhole.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E5C7812C1EADD09D00B58134 /* 05_blackhole.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -233,10 +234,11 @@
 		C4ADC5F419318BB600C0F86E /* 02_blackhole.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 02_blackhole.mp4; sourceTree = "<group>"; };
 		C4ADC5F519318BB600C0F86E /* 03_nebula.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 03_nebula.mp4; sourceTree = "<group>"; };
 		C4ADC5F619318BB600C0F86E /* 04_quasar.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04_quasar.mp4; sourceTree = "<group>"; };
-		C4ADC5F719318BB600C0F86E /* 05_blackhole.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 05_blackhole.mp4; sourceTree = "<group>"; };
 		C4CA95771945479000545E7D /* THConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THConstants.h; sourceTree = "<group>"; };
 		C4E702CA1966839500DD0DE0 /* THTitleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTitleItem.h; sourceTree = "<group>"; };
 		C4E702CB1966839500DD0DE0 /* THTitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTitleItem.m; sourceTree = "<group>"; };
+		E5C7812B1EADCEC400B58134 /* 06_intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 06_intro.mp4; sourceTree = "<group>"; };
+		E5C7812C1EADD09D00B58134 /* 05_blackhole.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 05_blackhole.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,10 @@
 				C414914D18FB4D010055EAD1 /* THAudioPickerViewController.m */,
 				C414915B18FB4D010055EAD1 /* THVideoPickerViewController.h */,
 				C414915C18FB4D010055EAD1 /* THVideoPickerViewController.m */,
+				C414915718FB4D010055EAD1 /* THTimelineViewController.h */,
+				C414915818FB4D010055EAD1 /* THTimelineViewController.m */,
+				C414915518FB4D010055EAD1 /* THTimelineDataSource.h */,
+				C414915618FB4D010055EAD1 /* THTimelineDataSource.m */,
 				C4A29A481904BA9200C137B1 /* THCompositionExporter.h */,
 				C4A29A491904BA9200C137B1 /* THCompositionExporter.m */,
 				C414914E18FB4D010055EAD1 /* THMainViewController.h */,
@@ -321,10 +327,6 @@
 				C414915218FB4D010055EAD1 /* THPlayerViewController.m */,
 				C414915318FB4D010055EAD1 /* THSettingsViewController.h */,
 				C414915418FB4D010055EAD1 /* THSettingsViewController.m */,
-				C414915518FB4D010055EAD1 /* THTimelineDataSource.h */,
-				C414915618FB4D010055EAD1 /* THTimelineDataSource.m */,
-				C414915718FB4D010055EAD1 /* THTimelineViewController.h */,
-				C414915818FB4D010055EAD1 /* THTimelineViewController.m */,
 				C414915918FB4D010055EAD1 /* THTransitionViewController.h */,
 				C414915A18FB4D010055EAD1 /* THTransitionViewController.m */,
 			);
@@ -489,9 +491,10 @@
 			children = (
 				C4ADC5F319318BB600C0F86E /* 01_nebula.mp4 */,
 				C4ADC5F419318BB600C0F86E /* 02_blackhole.mp4 */,
+				E5C7812B1EADCEC400B58134 /* 06_intro.mp4 */,
+				E5C7812C1EADD09D00B58134 /* 05_blackhole.mp4 */,
 				C4ADC5F519318BB600C0F86E /* 03_nebula.mp4 */,
 				C4ADC5F619318BB600C0F86E /* 04_quasar.mp4 */,
-				C4ADC5F719318BB600C0F86E /* 05_blackhole.mp4 */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -606,11 +609,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5C7812D1EADD0FA00B58134 /* 06_intro.mp4 in Resources */,
+				E5C7812E1EADD0FA00B58134 /* 05_blackhole.mp4 in Resources */,
 				C49550C118FB6522001CF983 /* Music in Resources */,
 				C4ADC5F919318BB600C0F86E /* 02_blackhole.mp4 in Resources */,
 				C4A8BDED18FB4C0D00C3EAFA /* Images.xcassets in Resources */,
 				C49550C218FB6522001CF983 /* VoiceOvers in Resources */,
-				C4ADC5FC19318BB600C0F86E /* 05_blackhole.mp4 in Resources */,
 				C4A8BDDF18FB4C0D00C3EAFA /* InfoPlist.strings in Resources */,
 				C4ADC5FA19318BB600C0F86E /* 03_nebula.mp4 in Resources */,
 				C4A8BDE818FB4C0D00C3EAFA /* Main.storyboard in Resources */,

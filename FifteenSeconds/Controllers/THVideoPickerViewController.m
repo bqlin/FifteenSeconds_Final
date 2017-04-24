@@ -33,6 +33,7 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 
 @interface THVideoPickerViewController ()
 @property (strong, nonatomic) NSArray *videoItems;
+/// 首个视频项是否载入
 @property (nonatomic) BOOL initialItemLoaded;
 @end
 
@@ -41,9 +42,9 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.initialItemLoaded = NO;
+    // 配置表视图样式
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.206 alpha:1.000];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -51,6 +52,7 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"%s, %zd", __FUNCTION__, indexPath.row);
 	THVideoItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:THVideoItemCellID forIndexPath:indexPath];
 	[self registerCellActions:cell];
 
@@ -64,6 +66,7 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 	[cell.addButton addTarget:self action:@selector(handleAddMediaItemTap:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+/// 预览按钮事件
 - (void)handlePreviewTap:(id)sender {
 	UIButton *button = sender;
 	NSIndexPath *indexPath = [self indexPathForButton:sender];
@@ -76,12 +79,14 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 	button.selected = !button.selected;
 }
 
+/// 添加到轨道按钮事件
 - (void)handleAddMediaItemTap:(id)sender {
 	NSIndexPath *indexPath = [self indexPathForButton:sender];
 	THVideoItem *item = self.videoItems[indexPath.row];
 	[self.playbackMediator addMediaItem:item toTimelineTrack:THVideoTrack];
 }
 
+/// 控件位置→index path
 - (NSIndexPath *)indexPathForButton:(UIButton *)button {
 	CGPoint point = [button convertPoint:button.bounds.origin toView:self.tableView];
 	return [self.tableView indexPathForRowAtPoint:point];

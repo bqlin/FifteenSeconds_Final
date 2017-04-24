@@ -31,13 +31,19 @@
 
 @interface THTimelineViewController : UIViewController
 
+/// 全局进度开关
 @property (nonatomic) BOOL transitionsEnabled;
+/// 全局音量淡入淡出开关
 @property (nonatomic) BOOL volumeFadesEnabled;
+/// 全局闪避旁白开关
 @property (nonatomic) BOOL duckingEnabled;
+/// 启动标题
 @property (nonatomic) BOOL titlesEnabled;
 
+/// 内嵌的集合视图
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+/// 添加时间线模型到指定轨道
 - (void)addTimelineItem:(THTimelineItem *)item toTrack:(THTrack)track;
 - (void)clearTimeline;
 - (THTimeline *)currentTimeline;
