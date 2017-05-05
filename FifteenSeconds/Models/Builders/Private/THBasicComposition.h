@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 对 AVComposition 的操作，并提供THComposition接口，即输出AVPlayerItem、AVAssetExportSession
 
 #import <AVFoundation/AVFoundation.h>
 #import "THComposition.h"

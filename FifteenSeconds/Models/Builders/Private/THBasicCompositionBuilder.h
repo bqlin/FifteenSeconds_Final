@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 通过 THTimeline 对象初始化，并遵守 THCompositionBuilder 协议，输出 THBasicComposition 对象（遵守 THComposition 协议，可导出、可播放）
 
 #import "THCompositionBuilder.h"
 #import "THTimeline.h"

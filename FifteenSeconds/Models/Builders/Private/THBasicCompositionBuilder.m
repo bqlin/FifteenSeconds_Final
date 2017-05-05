@@ -65,7 +65,7 @@
     if (!THIsEmpty(mediaItems)) {                                           // 1
 
         CMPersistentTrackID trackID = kCMPersistentTrackID_Invalid;
-
+        // 1. 添加空轨道到合成中
         AVMutableCompositionTrack *compositionTrack =                       // 2
             [self.composition addMutableTrackWithMediaType:mediaType
                                           preferredTrackID:trackID];
@@ -73,13 +73,14 @@
         CMTime cursorTime = kCMTimeZero;                                    // 3
 
         for (THMediaItem *item in mediaItems) {
-
+            // 如果item在轨道的时间有效，则移动光标
             if (CMTIME_COMPARE_INLINE(item.startTimeInTimeline,             // 4
             !=,
             kCMTimeInvalid)) {
                 cursorTime = item.startTimeInTimeline;
             }
-
+            
+            // 2. 获取 AVAssetTrack，插入到 AVMutableCompositionTrack 轨道中
             AVAssetTrack *assetTrack =                                      // 5
                 [[item.asset tracksWithMediaType:mediaType] firstObject];
 
@@ -88,7 +89,7 @@
                                        atTime:cursorTime
                                         error:nil];
 
-            // Move cursor to next item time
+            // Move cursor to next item time，同步光标
             cursorTime = CMTimeAdd(cursorTime, item.timeRange.duration);    // 7
         }
     }

@@ -55,6 +55,13 @@ static const NSString *PlayerItemStatusContext;
 
 @implementation THPlayerViewController
 
+- (void)dealloc{
+    if (self.playerItem) {
+        [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Set Up
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,7 +136,7 @@ static const NSString *PlayerItemStatusContext;
 				[self stopPlayback];
 			}
 
-			[self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+			if (self.playerItem) [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
             
 
 			[self prepareAudioMixes];

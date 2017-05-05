@@ -58,6 +58,7 @@
 
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
 	[self performSegueWithIdentifier:@"THSetVideoPickerViewController" sender:self];
 	[self performSegueWithIdentifier:@"THSetAudioPickerViewController" sender:self];
 }

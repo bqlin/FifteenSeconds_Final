@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 通过遵守THComposition协议的对象，如THBasicComposition，进行导出操作
 
 #import "THTimeline.h"
 #import "THComposition.h"

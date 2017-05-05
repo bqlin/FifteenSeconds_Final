@@ -67,7 +67,6 @@
 		C41AAC4C1938314D0033127E /* THTransitionInstructions.m in Sources */ = {isa = PBXBuildFile; fileRef = C41AAC4B1938314D0033127E /* THTransitionInstructions.m */; };
 		C424B6B518FB6D67003821FF /* UIAlertView+THAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C424B6B418FB6D67003821FF /* UIAlertView+THAdditions.m */; };
 		C463A3CB1931BFB6004488E7 /* THPlayheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C463A3CA1931BFB6004488E7 /* THPlayheadView.m */; };
-		C49550C118FB6522001CF983 /* Music in Resources */ = {isa = PBXBuildFile; fileRef = C49550BF18FB6522001CF983 /* Music */; };
 		C49550C218FB6522001CF983 /* VoiceOvers in Resources */ = {isa = PBXBuildFile; fileRef = C49550C018FB6522001CF983 /* VoiceOvers */; };
 		C4A29A4A1904BA9200C137B1 /* THCompositionExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A29A491904BA9200C137B1 /* THCompositionExporter.m */; };
 		C4A8BDD518FB4C0D00C3EAFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A8BDD418FB4C0D00C3EAFA /* Foundation.framework */; };
@@ -83,6 +82,7 @@
 		C4ADC5FA19318BB600C0F86E /* 03_nebula.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F519318BB600C0F86E /* 03_nebula.mp4 */; };
 		C4ADC5FB19318BB600C0F86E /* 04_quasar.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C4ADC5F619318BB600C0F86E /* 04_quasar.mp4 */; };
 		C4E702CC1966839500DD0DE0 /* THTitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E702CB1966839500DD0DE0 /* THTitleItem.m */; };
+		E574232B1EAF357000958704 /* Music in Resources */ = {isa = PBXBuildFile; fileRef = C49550BF18FB6522001CF983 /* Music */; };
 		E5C7812D1EADD0FA00B58134 /* 06_intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E5C7812B1EADCEC400B58134 /* 06_intro.mp4 */; };
 		E5C7812E1EADD0FA00B58134 /* 05_blackhole.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E5C7812C1EADD09D00B58134 /* 05_blackhole.mp4 */; };
 /* End PBXBuildFile section */
@@ -585,6 +585,11 @@
 				CLASSPREFIX = TH;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "TapHarmonic, LLC";
+				TargetAttributes = {
+					C4A8BDD018FB4C0D00C3EAFA = {
+						DevelopmentTeam = V7WL667MJM;
+					};
+				};
 			};
 			buildConfigurationList = C4A8BDCC18FB4C0D00C3EAFA /* Build configuration list for PBXProject "FifteenSeconds" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -609,9 +614,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E574232B1EAF357000958704 /* Music in Resources */,
 				E5C7812D1EADD0FA00B58134 /* 06_intro.mp4 in Resources */,
 				E5C7812E1EADD0FA00B58134 /* 05_blackhole.mp4 in Resources */,
-				C49550C118FB6522001CF983 /* Music in Resources */,
 				C4ADC5F919318BB600C0F86E /* 02_blackhole.mp4 in Resources */,
 				C4A8BDED18FB4C0D00C3EAFA /* Images.xcassets in Resources */,
 				C49550C218FB6522001CF983 /* VoiceOvers in Resources */,
@@ -797,11 +802,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = V7WL667MJM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FifteenSeconds/FifteenSeconds-Prefix.pch";
 				INFOPLIST_FILE = "FifteenSeconds/FifteenSeconds-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = bq.com.tapharmonic.FifteenSeconds;
 				PRODUCT_NAME = FifteenSeconds;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -811,11 +819,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = V7WL667MJM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FifteenSeconds/FifteenSeconds-Prefix.pch";
 				INFOPLIST_FILE = "FifteenSeconds/FifteenSeconds-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = bq.com.tapharmonic.FifteenSeconds;
 				PRODUCT_NAME = FifteenSeconds;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

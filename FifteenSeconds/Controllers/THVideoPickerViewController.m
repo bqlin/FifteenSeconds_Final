@@ -41,7 +41,7 @@ static NSString * const THVideoItemCellID = @"THVideoItemCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.initialItemLoaded = NO;
+	self.initialItemLoaded = YES;
     // 配置表视图样式
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.206 alpha:1.000];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

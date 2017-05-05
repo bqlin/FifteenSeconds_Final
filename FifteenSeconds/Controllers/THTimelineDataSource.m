@@ -224,6 +224,8 @@ static NSString * const THAudioItemCollectionViewCellID		= @"THAudioItemCollecti
 	[self.controller.collectionView reloadData];
 }
 
+#pragma mark - UICollectionViewDelegateTimelineLayout
+
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
 	return indexPath.section == 0 && !self.controller.transitionsEnabled;
 }
@@ -234,6 +236,7 @@ static NSString * const THAudioItemCollectionViewCellID		= @"THAudioItemCollecti
 		NSLog(@"FUBAR:  Attempting to move: %li to %li.", (long)fromIndexPath.item, (long)toIndexPath.item);
 		NSAssert(NO, @"Attempting to make invalid move.");
 	}
+    // 改变数据源
 	[items exchangeObjectAtIndex:fromIndexPath.item withObjectAtIndex:toIndexPath.item];
 }
 

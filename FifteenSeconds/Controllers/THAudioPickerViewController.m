@@ -46,6 +46,7 @@ static NSString * const THAudioItemCellID = @"THAudioItemCell";
 @implementation THAudioPickerViewController
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.allAudioItems = @[self.musicItems, self.voiceOverItems];
 }
 
@@ -167,7 +168,7 @@ static NSString * const THAudioItemCellID = @"THAudioItemCell";
 }
 
 - (NSArray *)musicURLs {
-	return [[NSBundle mainBundle] URLsForResourcesWithExtension:@"m4a" subdirectory:@"Music"];
+	return [[NSBundle mainBundle] URLsForResourcesWithExtension:nil subdirectory:@"Music"];
 }
 
 - (NSArray *)voiceOverURLs {

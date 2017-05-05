@@ -22,6 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+// 为后面定义通用接口——创建一个可播放版本，创建一个可导出版本
 
 #import <AVFoundation/AVFoundation.h>
 
