@@ -99,7 +99,7 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)prepareToPlay {
-
+    // 替换playerItem，或创建AVPlayer
     if (!self.player) {
         self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
         self.playbackView.player = self.player;
@@ -107,13 +107,13 @@ static const NSString *PlayerItemStatusContext;
         [self.player replaceCurrentItemWithPlayerItem:self.playerItem];
     }
 
+    // 添加监听
 	[self.playerItem addObserver:self forKeyPath:STATUS_KEYPATH options:0 context:&PlayerItemStatusContext];
-
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(playerItemDidReachEnd:)
 												 name:AVPlayerItemDidPlayToEndTimeNotification
 											   object:self.playerItem];
-
+    // 关联同步层
 	if (self.playerItem.syncLayer) {
 		[self addSynchronizedLayer:self.playerItem.syncLayer];
         self.playerItem.syncLayer = nil;
