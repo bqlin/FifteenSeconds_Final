@@ -81,18 +81,18 @@
 	return nil;
 }
 
+#pragma mark - 构建 composition
+// 构建组合轨道
 - (void)buildCompositionTracks {
 
+    // 构建A-B轨道
     CMPersistentTrackID trackID = kCMPersistentTrackID_Invalid;
-
     AVMutableCompositionTrack *compositionTrackA =                          // 1
         [self.composition addMutableTrackWithMediaType:AVMediaTypeVideo
                                       preferredTrackID:trackID];
-
     AVMutableCompositionTrack *compositionTrackB =
         [self.composition addMutableTrackWithMediaType:AVMediaTypeVideo
                                       preferredTrackID:trackID];
-
     NSArray *videoTracks = @[compositionTrackA, compositionTrackB];
 
     CMTime cursorTime = kCMTimeZero;
@@ -103,8 +103,8 @@
         transitionDuration = THDefaultTransitionDuration;
     }
 
+    // 遍历视频片段，以A-B形式错开排列在两个轨道
     NSArray *videos = self.timeline.videos;
-
     for (NSUInteger i = 0; i < videos.count; i++) {
 
         NSUInteger trackIndex = i % 2;                                      // 3
@@ -134,8 +134,41 @@
                                        withMediaItems:musicItems];
 }
 
+/// 以并列方式排列片段并创建轨道
+- (AVMutableCompositionTrack *)addCompositionTrackOfType:(NSString *)mediaType
+                                          withMediaItems:(NSArray *)mediaItems {
+    
+    AVMutableCompositionTrack *compositionTrack = nil;
+    
+    if (!THIsEmpty(mediaItems)) {
+        compositionTrack =
+        [self.composition addMutableTrackWithMediaType:mediaType
+                                      preferredTrackID:kCMPersistentTrackID_Invalid];
+        
+        CMTime cursorTime = kCMTimeZero;
+        
+        for (THMediaItem *item in mediaItems) {
+            
+            if (CMTIME_COMPARE_INLINE(item.startTimeInTimeline, !=, kCMTimeInvalid)) {
+                cursorTime = item.startTimeInTimeline;
+            }
+            
+            AVAssetTrack *assetTrack = [[item.asset tracksWithMediaType:mediaType] firstObject];
+            [compositionTrack insertTimeRange:item.timeRange ofTrack:assetTrack atTime:cursorTime error:nil];
+            
+            // Move cursor to next item time
+            cursorTime = CMTimeAdd(cursorTime, item.timeRange.duration);
+        }
+    }
+    
+    return compositionTrack;
+}
+
+#pragma mark - 构建 videoComposition
+/// 构建videoComposition，创建过渡
 - (AVVideoComposition *)buildVideoComposition {
 
+    // 由 composition 创建的 videoComposition
     AVVideoComposition *videoComposition =                           // 1
             [AVMutableVideoComposition
                 videoCompositionWithPropertiesOfAsset:self.composition];
@@ -156,13 +189,14 @@
 
         THVideoTransitionType type = instructions.transition.type;
 
+        // 渐隐过渡
         if (type == THVideoTransitionTypeDissolve) {
-
             [fromLayer setOpacityRampFromStartOpacity:1.0
                                          toEndOpacity:0.0
                                             timeRange:timeRange];
         }
 
+        // 推动过渡，从左往右
         if (type == THVideoTransitionTypePush) {
 
             // Define starting and ending transforms                        // 1
@@ -185,6 +219,7 @@
                                               timeRange:timeRange];
         }
 
+        // 擦除过渡，从上往下
         if (type == THVideoTransitionTypeWipe) {
 
             CGFloat videoWidth = videoComposition.renderSize.width;
@@ -208,32 +243,32 @@
 // Extract the composition and layer instructions out of the
 // prebuilt AVVideoComposition. Make the association between the instructions
 // and the THVideoTransition the user configured in the timeline.
-- (NSArray *)transitionInstructionsInVideoComposition:(AVVideoComposition *)vc {
+- (NSArray *)transitionInstructionsInVideoComposition:(AVVideoComposition *)videoComposition {
 
     NSMutableArray *transitionInstructions = [NSMutableArray array];
 
-    int layerInstructionIndex = 1;
+    int index = 1;
 
-    NSArray *compositionInstructions = vc.instructions;                     // 1
+    NSArray *compositionInstructions = videoComposition.instructions;                     // 1
 
-    for (AVMutableVideoCompositionInstruction *vci in compositionInstructions) {
+    for (AVMutableVideoCompositionInstruction *videoCompositionInstruction in compositionInstructions) {
 
-        if (vci.layerInstructions.count == 2) {                             // 2
+        if (videoCompositionInstruction.layerInstructions.count == 2) {                             // 2
 
             THTransitionInstructions *instructions =
                 [[THTransitionInstructions alloc] init];
 
-            instructions.compositionInstruction = vci;
+            instructions.compositionInstruction = videoCompositionInstruction;
 
             instructions.fromLayerInstruction =                             // 3
-                (AVMutableVideoCompositionLayerInstruction *)vci.layerInstructions[1 - layerInstructionIndex];
+                (AVMutableVideoCompositionLayerInstruction *)videoCompositionInstruction.layerInstructions[1 - index];
 
             instructions.toLayerInstruction =
-                (AVMutableVideoCompositionLayerInstruction *)vci.layerInstructions[layerInstructionIndex];
+                (AVMutableVideoCompositionLayerInstruction *)videoCompositionInstruction.layerInstructions[index];
 
             [transitionInstructions addObject:instructions];
 
-            layerInstructionIndex = layerInstructionIndex == 1 ? 0 : 1;
+            index = index == 1 ? 0 : 1;
         }
     }
 
@@ -253,35 +288,6 @@
     }
 
     return transitionInstructions;
-}
-
-- (AVMutableCompositionTrack *)addCompositionTrackOfType:(NSString *)mediaType
-                                          withMediaItems:(NSArray *)mediaItems {
-
-    AVMutableCompositionTrack *compositionTrack = nil;
-
-    if (!THIsEmpty(mediaItems)) {
-        compositionTrack =
-            [self.composition addMutableTrackWithMediaType:mediaType
-                                          preferredTrackID:kCMPersistentTrackID_Invalid];
-
-        CMTime cursorTime = kCMTimeZero;
-
-        for (THMediaItem *item in mediaItems) {
-
-            if (CMTIME_COMPARE_INLINE(item.startTimeInTimeline, !=, kCMTimeInvalid)) {
-                cursorTime = item.startTimeInTimeline;
-            }
-
-            AVAssetTrack *assetTrack = [[item.asset tracksWithMediaType:mediaType] firstObject];
-            [compositionTrack insertTimeRange:item.timeRange ofTrack:assetTrack atTime:cursorTime error:nil];
-
-            // Move cursor to next item time
-            cursorTime = CMTimeAdd(cursorTime, item.timeRange.duration);
-        }
-    }
-
-    return compositionTrack;
 }
 
 - (AVAudioMix *)buildAudioMix {
