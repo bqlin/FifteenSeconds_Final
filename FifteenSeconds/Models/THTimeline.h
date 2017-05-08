@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, THTrack) {
 
 @interface THTimeline : NSObject
 
+/// THVideoItem 数组
 @property (strong, nonatomic) NSArray *videos;
 @property (strong, nonatomic) NSArray *transitions;
 @property (strong, nonatomic) NSArray *titles;
